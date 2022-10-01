@@ -1,9 +1,11 @@
-import type { AppProps } from "next/app";
-import "../styles/globals.css";
 import Head from "next/head";
+import "../styles/globals.css";
+import { AppPropsWithLayout } from "../www/shared/layout/types";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
+export function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(
     <>
       <Head>
         <title>a-3140</title>
@@ -30,10 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-
       <Component {...pageProps} />
     </>
   );
 }
 
-export default MyApp;
+export default App;
