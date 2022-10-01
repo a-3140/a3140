@@ -1,5 +1,5 @@
 import Head from "next/head";
-import "../styles/globals.css";
+import "../styles/tailwind-imports.css";
 import { AppPropsWithLayout } from "../www/shared/layout/types";
 
 export function App({ Component, pageProps }: AppPropsWithLayout) {
