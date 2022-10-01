@@ -1,6 +1,6 @@
 import Head from "next/head";
-import "../styles/tailwind-imports.css";
-import { AppPropsWithLayout } from "../www/shared/layout/types";
+import "@/styles/tailwind-imports.css";
+import { AppPropsWithLayout } from "@/www/shared/layout/types";
 
 export function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);

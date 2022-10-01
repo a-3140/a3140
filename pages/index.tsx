@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { DefaultLayout } from "../www/shared/layout";
-import { NextPageWithLayout } from "../www/shared/layout/types";
+import { DefaultLayout } from "@/www/shared/layout";
+import { NextPageWithLayout } from "@/www/shared/layout/types";
 
 const Home: NextPageWithLayout = () => {
   return (
