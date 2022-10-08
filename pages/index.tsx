@@ -1,16 +1,30 @@
 import { ReactElement } from "react";
+
+import { LandingPageHero } from "@/www/pages/index/hero";
+import { Button } from "@/www/shared/components/buttons/button";
 import { DefaultLayout } from "@/www/shared/layout";
 import { NextPageWithLayout } from "@/www/shared/layout/types";
 
 const Home: NextPageWithLayout = () => {
   return (
-    <div className="w-full min-h-screen flex justify-center items-center bg-neutral-900">
-      <div className="max-w-5xl text-left">
-        <div className="text-7xl font-semibold font-poppins text-stone-200 body-font tracking-wide hidden">
-          This is the homepage
-        </div>
-        <div className="text-center relative" />
-      </div>
+    <div>
+      <LandingPageHero>
+        <>
+          <div className="text-4xl md:text-7xl font-mono font-extrabold text-gray-200">
+            Building technical websites with{" "}
+            <span className="text-emerald-400 font-mono">creativity.</span>
+          </div>
+          <div className="text-gray-400 mt-4 text-md md:text-xl tracking-wider font-light max-w-2xl px-2 md:px-0">
+            Experienced fullstack developer based from the Philippines.
+            Interested on all things web and where engineering meets creativity.
+          </div>
+          <div className="mt-4">
+            <Button type={"primary"} text="Contact Me" />
+            <Button type="secondary" text="Github" />
+          </div>
+        </>
+      </LandingPageHero>
+      <LandingPageHero bgScheme="light" />
     </div>
   );
 };
