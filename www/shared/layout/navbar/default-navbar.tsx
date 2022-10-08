@@ -14,16 +14,7 @@ const navItems = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hidden, setHidden] = useState(mobileOpen);
   const scrolled = useScrollDetect();
-
-  // useEffect(() => {
-  //   if (hidden !== mobileOpen) {
-  //     setTimeout(() => {
-  //       setHidden(mobileOpen);
-  //     }, 200);
-  //   }
-  // }, []);
 
   return (
     <nav
