@@ -6,10 +6,6 @@ module.exports = {
     "./www/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    height: {
-      nav: "72px",
-      hero: "calc(100vh - 72px)",
-    },
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
