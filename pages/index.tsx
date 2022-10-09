@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 
 import { LandingPageHero } from "@/www/pages/index/hero";
+import { LandingSection } from "@/www/pages/index/section";
 import { Button } from "@/www/shared/components/buttons/button";
 import { DefaultLayout } from "@/www/shared/layout";
 import { NextPageWithLayout } from "@/www/shared/layout/types";
@@ -9,8 +10,8 @@ const Home: NextPageWithLayout = () => {
   return (
     <div>
       <LandingPageHero>
-        <>
-          <div className="text-4xl md:text-7xl font-mono font-extrabold text-gray-200">
+        <div className="text-center md:text-left md:px-4">
+          <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-extrabold text-gray-200">
             Building technical websites with{" "}
             <span className="text-emerald-400 font-mono">creativity.</span>
           </div>
@@ -22,9 +23,9 @@ const Home: NextPageWithLayout = () => {
             <Button type={"primary"} text="Contact Me" />
             <Button type="secondary" text="Github" />
           </div>
-        </>
+        </div>
       </LandingPageHero>
-      <LandingPageHero bgScheme="light" />
+      <LandingSection bgScheme="light" />
     </div>
   );
 };

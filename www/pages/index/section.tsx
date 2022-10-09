@@ -3,16 +3,16 @@ import { ReactNode } from "react";
 import { classNames } from "@/www/shared/helpers";
 import useScrollDetect from "@/www/shared/hooks/useScrollDetect";
 
-export interface LandingPageHeroProps {
+export interface LandingSectionProps {
   bgScheme?: "dark" | "light";
   children?: ReactNode;
 }
 
-export function LandingPageHero({ bgScheme, children }: LandingPageHeroProps) {
+export function LandingSection({ bgScheme, children }: LandingSectionProps) {
   const isScrolled = useScrollDetect();
   return (
     <div
-      className="w-full overflow-hidden min-h-screen flex justify-center items-center bg-fixed py-10 bg-transparent bg-no-repeat md:bg-right bg-center"
+      className="w-full min-h-screen flex justify-center items-center bg-fixed py-10 bg-transparent bg-no-repeat md:bg-right bg-center relative"
       style={{
         backgroundImage: `${
           bgScheme === "dark" || bgScheme === undefined
@@ -23,8 +23,8 @@ export function LandingPageHero({ bgScheme, children }: LandingPageHeroProps) {
     >
       <div
         className={classNames(
-          "absolute bottom-0 left-0 overflow-hidden leading-[0] transition-all duration-700 ease-in-out",
-          isScrolled && "opacity-0 -translate-x-2/4 duration-[1500ms]"
+          "absolute top-0 right-0 overflow-hidden leading-[0] transition-all duration-700 ease-in-out rotate-180",
+          isScrolled && "opacity-0 translate-x-2/4 duration-[1500ms]"
         )}
       >
         <svg
