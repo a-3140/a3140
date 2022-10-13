@@ -4,7 +4,7 @@ import { LayoutProps } from "./types";
 
 export function DefaultLayout({ children }: LayoutProps) {
   return (
-    <div className=" bg-neutral-900">
+    <div className=" bg-neutral-900 overflow-hidden">
       <Navbar />
       {children}
       <Footer />
