@@ -74,12 +74,13 @@ export function Navbar() {
           <ul
             onClick={() => setMobileOpen(!mobileOpen)}
             className={classNames(
-              "md:text-4xl",
+              "md:text-2xl",
+              "shadow-lg shadow-neutral-800",
               " transition-transform delay-200 duration-500",
-              "fixed flex flex-col top-0 left-0",
-              "font-mono font-bold text-2xl tracking-wide",
+              "fixed flex flex-col top-0 right-0",
+              "font-mono font-bold text-xl tracking-wide",
               mobileOpen ? "translate-x-0" : "translate-x-[100vw]",
-              "bg-neutral-900 space-y-5 w-full h-screen justify-center items-center"
+              "bg-neutral-900 space-y-5 w-72 h-screen justify-start py-44 items-center"
             )}
           >
             {navItems.map((item) => (
