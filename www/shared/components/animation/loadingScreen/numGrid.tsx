@@ -22,9 +22,7 @@ export function NumGrid({ numGrid, matrixLoaded }: NumGridProps) {
         <div
           key={idx}
           className="transition-opacity duration-200 px-2 ease-in-out"
-          style={{
-            opacity: `${getRandomIntInclusive(0, 40) / 100}`,
-          }}
+          style={{ opacity: `${getRandomIntInclusive(10, 40) / 100}` }}
         >
           <p
             className={classNames(

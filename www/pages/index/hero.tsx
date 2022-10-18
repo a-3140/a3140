@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { classNames } from "@/www/shared/helpers";
 import useScrollDetect from "@/www/shared/hooks/useScrollDetect";
@@ -6,10 +6,31 @@ import useScrollDetect from "@/www/shared/hooks/useScrollDetect";
 export interface LandingPageHeroProps {
   bgScheme?: "dark" | "light";
   children?: ReactNode;
+  showHero: boolean;
 }
 
-export function LandingPageHero({ bgScheme, children }: LandingPageHeroProps) {
+export function LandingPageHero({
+  bgScheme,
+  showHero,
+  children,
+}: LandingPageHeroProps) {
   const isScrolled = useScrollDetect();
+  const [initialLoad, setInitialLoad] = useState(false);
+
+  useEffect(() => {
+    setInitialLoad(true);
+  }, [showHero]);
+
+  const animateInitialLoad = () => {
+    return initialLoad
+      ? "opacity-100 translate-x-0 duration-[1500ms]"
+      : "-translate-x-1/2 opacity-0";
+  };
+
+  const animateOutOnScroll = () => {
+    return isScrolled && "opacity-0 -translate-x-1/2 duration-[1500ms]";
+  };
+
   return (
     <div
       className="min-h-screen flex justify-center items-center bg-fixed py-10 bg-transparent bg-no-repeat md:bg-right bg-center"
@@ -24,7 +45,8 @@ export function LandingPageHero({ bgScheme, children }: LandingPageHeroProps) {
       <div
         className={classNames(
           "fixed bottom-0 left-0 overflow-hidden leading-[0] transition-all duration-700 ease-in-out",
-          isScrolled && "opacity-0 -translate-x-2/4 duration-[1500ms]"
+          animateInitialLoad(),
+          animateOutOnScroll()
         )}
       >
         <svg

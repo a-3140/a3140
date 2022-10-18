@@ -17,8 +17,8 @@ async function wait(duration: number) {
 
 export function LoadingScreen({ hasLoaded, setHasLoaded }: LoadingScreenProps) {
   const [display, setDisplay] = useState(false);
-  const [runMatrix, setRunMatrix] = useState(true);
-  const [finishLoad, setFinishLoad] = useState(false);
+  const [matrixRunning, setMatrixRunning] = useState(true);
+  const [matrixTransition, setMatrixTransition] = useState(false);
 
   const numSet = new Array(600).fill({}).map(() => {});
   const [numGrid, setNumGrid] = useState(numSet);
@@ -30,35 +30,43 @@ export function LoadingScreen({ hasLoaded, setHasLoaded }: LoadingScreenProps) {
     if (!hasLoaded) {
       let matrixInterval: NodeJS.Timer;
 
-      if (runMatrix) {
+      if (matrixRunning) {
         matrixInterval = setInterval(() => {
           setNumGrid(numSet);
-        }, 200);
+        }, 100);
       }
 
       (async (matrixInterval) => {
-        await wait(1250);
+        await wait(1000);
         clearInterval(matrixInterval);
-        setRunMatrix(false);
+        setMatrixRunning(false);
 
         await wait(1250);
-        setFinishLoad(true);
+        setMatrixTransition(true);
 
-        await wait(750);
+        await wait(1000);
         setHasLoaded(true);
       })();
 
       // interval is called from the window and should be cleared everytime
       return () => clearInterval(matrixInterval);
     }
-  }, [numSet, runMatrix, hasLoaded, setHasLoaded]);
+  }, [numSet, matrixRunning, hasLoaded, setHasLoaded]);
+
+  const fadeInBg = () => {
+    return !matrixRunning ? "bg-neutral-900" : "bg-black";
+  };
+
+  const fadeToTopTransition = () => {
+    return matrixTransition && `opacity-0 -translate-y-full`;
+  };
 
   return (
     <div
       className={classNames(
         "overflow-hidden w-full h-screen z-50 fixed top-0 left-0 bg-fixed bg-no-repeat md:bg-right bg-center",
-        "transition-colors ease-in-out duration-700 delay-150",
-        !runMatrix ? "bg-neutral-900" : "bg-black"
+        "transition-colors ease-in-out duration-700 delay-500",
+        fadeInBg()
       )}
       style={{
         backgroundImage: "url('/images/undraw_hacker_mind.svg')",
@@ -66,12 +74,12 @@ export function LoadingScreen({ hasLoaded, setHasLoaded }: LoadingScreenProps) {
     >
       <div
         className={classNames(
-          "flex flex-col flex-wrap transition-all duration-500",
-          finishLoad && `opacity-0 -translate-y-full`
+          "flex flex-col flex-wrap transition-all duration-700",
+          fadeToTopTransition()
         )}
         style={{ height: `calc(100vh + 1em)` }}
       >
-        {display && <NumGrid numGrid={numGrid} matrixLoaded={!runMatrix} />}
+        {display && <NumGrid numGrid={numGrid} matrixLoaded={!matrixRunning} />}
       </div>
     </div>
   );

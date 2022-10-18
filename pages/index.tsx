@@ -21,7 +21,7 @@ const Home: NextPageWithLayout = () => {
       {!hasLoaded ? (
         <LoadingScreen hasLoaded={hasLoaded} setHasLoaded={setHasLoaded} />
       ) : (
-        <LandingPageHero>
+        <LandingPageHero showHero={hasLoaded}>
           <div
             className={classNames(
               "text-center md:text-left md:px-4 transition-opacity ease-in-out duration-500",
@@ -30,7 +30,9 @@ const Home: NextPageWithLayout = () => {
           >
             <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-extrabold text-gray-200">
               Building technical websites with{" "}
-              <span className="text-emerald-400 font-mono">creativity.</span>
+              <span className="animate-pulse text-emerald-400 font-mono">
+                creativity.
+              </span>
             </div>
             <div className="text-gray-400 mt-4 text-md md:text-xl tracking-wider font-light max-w-2xl px-2 md:px-0">
               Experienced fullstack developer based from the Philippines.
